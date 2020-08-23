@@ -20,7 +20,7 @@ class CarSerializer(serializers.ModelSerializer):
         make = validated_data['make']
         model = validated_data['model']
         data = requests.get(
-            'https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/honda?format=json')
+            f'https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/{make}?format=json')
         cars = json.loads(data.text)
         for item in cars['Results']:
             if model.lower() == item['Model_Name'].lower():
