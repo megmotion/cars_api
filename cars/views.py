@@ -9,6 +9,9 @@ class CarView(viewsets.ModelViewSet):
 	queryset = Car.objects.all()
 	serializer_class = CarSerializer
 
+	def get_serializer_context(self, *args, **kwargs):
+		return {"request": self.request}
+
 class RatingView(viewsets.ModelViewSet):
     http_method_names = ['post']
     queryset = Rating.objects.all()

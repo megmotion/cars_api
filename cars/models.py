@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Avg, Count
+from rest_framework.reverse import reverse as api_reverse
 
 
 class Car(models.Model):
@@ -13,6 +14,9 @@ class Car(models.Model):
 	@property
 	def rating_count(self):
 		return Rating.objects.filter(car__id=self.id).count()
+
+	def get_api_url(self, request=None):
+		return api_reverse("cars:cars-detail", kwargs={'pk': self.pk}, request=request)
 
 	def __str__(self):
 		return self.make+'_'+self.model

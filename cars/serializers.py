@@ -6,9 +6,15 @@ import json
 
 
 class CarSerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Car
-        fields = ('id', 'make', 'model', 'average', 'rating_count')
+        fields = ('id', 'url', 'make', 'model', 'average', 'rating_count')
+
+    def get_url(self, obj):
+        request = self.context.get("request")
+        return obj.get_api_url(request=request)
 
     def create(self, validated_data):
         make = validated_data['make']
@@ -16,7 +22,6 @@ class CarSerializer(serializers.ModelSerializer):
         data = requests.get(
             'https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/honda?format=json')
         cars = json.loads(data.text)
-        print(cars)
         for item in cars['Results']:
             if model.lower() == item['Model_Name'].lower():
                 return Car.objects.create(**validated_data)

@@ -10,5 +10,5 @@ router.register('rating', views.RatingView, 'rating')
 
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include((router.urls, 'cars')))
 ]
