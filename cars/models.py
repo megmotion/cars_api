@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Avg, Count
+
 from rest_framework.reverse import reverse as api_reverse
 
 
@@ -19,7 +20,7 @@ class Car(models.Model):
 		return api_reverse("cars:cars-detail", kwargs={'pk': self.pk}, request=request)
 
 	def __str__(self):
-		return self.make+'_'+self.model
+		return f'{self.id}_{self.make}_{self.model}'
 
 class Rating(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, null=True)

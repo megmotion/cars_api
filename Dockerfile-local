@@ -35,11 +35,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip3 install --upgrade pip 
 RUN pip3 install pipenv
 RUN pip3 install gunicorn
+RUN pip3 install dj-static
+RUN pip3 install whitenoise
 RUN pip3 install requests
 
 # Install project dependencies
 RUN pipenv install --skip-lock --system --dev
 
-EXPOSE 8888
+EXPOSE 8000
 CMD gunicorn cars_api.wsgi:application --bind 0.0.0.0:$PORT
 

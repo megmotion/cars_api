@@ -25,7 +25,7 @@ SECRET_KEY = 'etdeq-6osn6scyk3z*4^j!$x=$enwr2fypl*rm+!rt6)(dd09!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cars-django-api.herokuapp.com']
+ALLOWED_HOSTS = ['cars-django-api.herokuapp.com', 'localhost']
 
 
 # Application definition

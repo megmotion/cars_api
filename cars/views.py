@@ -18,6 +18,5 @@ class RatingView(viewsets.ModelViewSet):
     serializer_class = RatingSerializer
 
 class PopularView(viewsets.ReadOnlyModelViewSet):
-	popularity =  Car.objects.all().annotate(count=Count('rating')).order_by('-count').values_list('count', flat=True).distinct()
-	queryset = Car.objects.all().annotate(count=Count('rating')).order_by('-count').filter(count__in=popularity[:3])
+	queryset = Car.objects.all().annotate(count=Count('rating')).order_by('-count')[:10]
 	serializer_class = CarSerializer

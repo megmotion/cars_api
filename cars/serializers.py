@@ -22,11 +22,15 @@ class CarSerializer(serializers.ModelSerializer):
         data = requests.get(
             f'https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/{make}?format=json')
         cars = json.loads(data.text)
-        for item in cars['Results']:
-            if model.lower() == item['Model_Name'].lower():
-                return Car.objects.create(**validated_data)
+        added_car=Car.objects.filter(make=make, model=model)
+        if not added_car:
+            for item in cars['Results']:
+                if model.lower() == item['Model_Name'].lower():
+                    return Car.objects.create(**validated_data)
+            else:
+                raise serializers.ValidationError("There is no such car :D")
         else:
-            raise serializers.ValidationError("The car does not exist")
+            raise serializers.ValidationError("This car already exists in database")
 
 
 class RatingSerializer(serializers.ModelSerializer):
