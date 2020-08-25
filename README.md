@@ -15,6 +15,9 @@ http://cars-django-api.herokuapp.com/
 you need docker to run it localy
 * clone respository
 * RUN: docker build -t cars_api -f Dockerfile-local .
+* RUN docker-compose run web python manage.py migrate
+* RUN docker-compose run web python manage.py createsuperuser
+
 
 ### Executing program
 
