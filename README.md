@@ -14,7 +14,7 @@ http://cars-django-api.herokuapp.com/
 ### Installing
 you need docker to run it localy
 * clone respository
-* RUN: docker build -t dj-docker-to-heroku -f Dockerfile-local .
+* RUN: docker build -t cars_api -f Dockerfile-local .
 
 ### Executing program
 
