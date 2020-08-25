@@ -25,9 +25,9 @@ You can now add and rate cars :D
 HEROKU HOST: http://cars-django-api.herokuapp.com <br />
 LOCAL HOST: http://localhost:8000/
 
-AVAILABLE endpoints:
+### AVAILABLE endpoints:
 
-POST /cars/
+#### POST /cars/
 
 example json body:<br />
 { <br />
@@ -35,7 +35,7 @@ example json body:<br />
     "model": ""    \#car model ex mustang<br />
 }
 
-POST /rating/
+#### POST /rating/
 
 example json body:<br />
 {<br />
@@ -43,10 +43,10 @@ example json body:<br />
     "rate": 2    \#rate int 1-5<br />
 }
 
-GET /cars/
+#### GET /cars/
 
 shows the list of cars in databese
 
-GET /popular/
+#### GET /popular/
 
 shows top rated cars
